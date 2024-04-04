@@ -1,0 +1,10 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysecretpw
+      - MYSQL_ROOT_USER=root
+      - MYSQL_DATABASE=usersdb
+    volumes:
+      - .dbdata:/var/lib/mysql
