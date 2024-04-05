@@ -1,12 +1,11 @@
-import mysql from "mysql2/promise";
+import mysql from "mysql2";
 
-export const connection = mysql.createConnection(
-  {
-  host: 'localhost',
-  password: 'mysecretpw',
+const connection = mysql.createConnection({
+  host: "localhost",
+  password: "mysecretpw",
   port: 3306,
-  user: 'root',
-  database: 'usersdb',
-  })
+  user: "root",
+  database: "usersdb",
+});
 
-
+export default connection;
