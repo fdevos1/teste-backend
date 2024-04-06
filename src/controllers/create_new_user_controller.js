@@ -6,9 +6,9 @@ export class CreateNewUserController {
 
     try {
       const userData = req.body;
-      await createUserService.create_new_user(userData);
+      const result = await createUserService.create_new_user(userData);
 
-      return res.status(201).send("Usuário criado com sucesso!");
+      return res.status(201).send("Usuário criado com sucesso!" + result);
     } catch (err) {
       return res.status(500).send("Error ao criar usuário: " + err.message);
     }
