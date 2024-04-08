@@ -2,10 +2,10 @@ import { GetUsersService } from "../services/get_users_service.js";
 
 export class GetUserController {
   async get_all_users(req, res) {
-    const getUserServices = new GetUsersService();
+    const service = new GetUsersService();
 
     try {
-      const result = await getUserServices.get_all_users();
+      const result = await service.get_all_users();
 
       return res.status(200).send(result);
     } catch (err) {

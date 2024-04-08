@@ -1,12 +1,12 @@
-import { CreateNewUserService } from "../services/create_new_user_services.js";
+import { CreateNewUserService } from "../services/create_new_user_service.js";
 
 export class CreateNewUserController {
   async new_user(req, res) {
-    const createUserService = new CreateNewUserService();
+    const service = new CreateNewUserService();
 
     try {
       const userData = req.body;
-      const result = await createUserService.create_new_user(userData);
+      const result = await service.create_new_user(userData);
 
       return res.status(201).send("Usuário criado com sucesso!" + result);
     } catch (err) {
