@@ -1,3 +1,4 @@
+import { NotFoundError } from "../helpers/api_errors.js";
 import { GetUserByCpfService } from "../services/get_user_by_cpf._service.js";
 
 export class GetUserByCpfController {
@@ -6,14 +7,24 @@ export class GetUserByCpfController {
 
     const { cpf } = req.params;
 
-    try {
-      const result = await service.get_user_by_cpf(cpf);
+    if (!cpf) {
+      throw new NotFoundError("CPF não enviado");
+    }
 
-      return res.status(200).send(result);
+    try {
+      let result = [];
+
+      result = await service.get_user_by_cpf(cpf);
+
+      if (result.length <= 0) {
+        throw new NotFoundError(
+          "Nenhum resultado encontrado, verifique o CPF digitado"
+        );
+      }
+
+      return res.status(200).json({ user: result });
     } catch (err) {
-      return res
-        .status(500)
-        .send("Erro ao recuperar as informações do usuário: " + err.message);
+      return res.status(err.statusCode).send({ message: err.message });
     }
   }
 }
