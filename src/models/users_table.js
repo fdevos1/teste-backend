@@ -1,15 +1,24 @@
 // chave unicas
-// id,cpf
+// ** id
+// ** cpf
 //
 // chave obrigatorias
-// nome, data de nascimento, endereço (rua, número, complemento, bairro, cidade, estado, cep)
+// * nome
+// * data de nascimento
+// * endereço rua
+// * número
+// - complemento
+// * bairro
+// * cidade
+// * estado
+// * cep
 //
 // chave não funcionais
 // status de registro, data e hora de criação, usuário utilizado na criação do registro
 // data e hora de atualização do registro, usuario utilizado na atualização do registro
 // data e hora de remoção do registro, usuário utilizado na remoção do registro
 
-const create_user_table = `CREATE TABLE IF NOT EXISTS users(
+export const create_user_table = `CREATE TABLE IF NOT EXISTS users(
     id INT AUTO_INCREMENT PRIMARY KEY,
     cpf VARCHAR(14) UNIQUE NOT NULL,
     nome VARCHAR(255) NOT NULL,
@@ -24,12 +33,10 @@ const create_user_table = `CREATE TABLE IF NOT EXISTS users(
     status ENUM('Ativo', 'Removido') DEFAULT 'Ativo',
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     usuario_criacao VARCHAR(255),
-    id_usuario_criacao INT,
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     usuario_atualizacao VARCHAR(255),
-    id_usuario_atualizacao INT,
     data_remocao TIMESTAMP,
-    usuario_remocao VARCHAR(255),
-    id_usuario_remocao INT)`;
+    usuario_remocao VARCHAR(255))
+    `;
 
-export default create_user_table;
+export const create_admin = `INSERT INTO users (cpf, nome, data_nascimento, rua, numero, bairro, cidade, estado, cep) VALUES ('123.456.789-10', 'admin', '2000-03-03', 'Rua', '123', 'Bairro', 'Cidade', 'RS', '12345-678')`;

@@ -1,5 +1,5 @@
 import { NotFoundError } from "../helpers/api_errors.js";
-import { GetUserByCpfService } from "../services/get_user_by_cpf._service.js";
+import { GetUserByCpfService } from "../services/get_user_by_cpf_service.js";
 
 export class GetUserByCpfController {
   async get_user_by_cpf(req, res) {

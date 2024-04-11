@@ -1,6 +1,6 @@
 import { UpdateUserService } from "../services/update_user_service.js";
 import { NotFoundError } from "../helpers/api_errors.js";
-import { GetUserByCpfService } from "../services/get_user_by_cpf._service.js";
+import { GetUserByCpfService } from "../services/get_user_by_cpf_service.js";
 
 export class UpdateUserController {
   async update_user(req, res) {

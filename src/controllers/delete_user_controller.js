@@ -1,6 +1,6 @@
 import { NotFoundError } from "../helpers/api_errors.js";
 import { DeleteUserService } from "../services/delete_user_service.js";
-import { GetUserByCpfService } from "../services/get_user_by_cpf._service.js";
+import { GetUserByCpfService } from "../services/get_user_by_cpf_service.js";
 
 export class DeleteUserController {
   async delete_user(req, res) {

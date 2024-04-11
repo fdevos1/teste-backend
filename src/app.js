@@ -1,7 +1,7 @@
 import express from "express";
 
 import db from "./db.js";
-import create_user_table from "./models/users_table.js";
+import { create_user_table, create_admin } from "./models/users_table.js";
 
 import { routes } from "./routes/userRoutes.js";
 
@@ -15,6 +15,10 @@ db.connect((err) => {
 });
 
 db.query(create_user_table, (err, results, fields) => {
+  if (err) return console.log(err.message);
+});
+
+db.query(create_admin, (err, results, fields) => {
   if (err) return console.log(err.message);
 });
 

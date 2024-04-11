@@ -1,6 +1,6 @@
 import { BadRequestError } from "../helpers/api_errors.js";
 import { CreateNewUserService } from "../services/create_new_user_service.js";
-import { GetUserByCpfService } from "../services/get_user_by_cpf._service.js";
+import { GetUserByCpfService } from "../services/get_user_by_cpf_service.js";
 import { GetUserByIdService } from "../services/get_user_by_id_service.js";
 
 export class CreateNewUserController {
