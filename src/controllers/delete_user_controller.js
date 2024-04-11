@@ -8,6 +8,7 @@ export class DeleteUserController {
     const getService = new GetUserByCpfService();
 
     const { cpf } = req.body;
+    const createdBy = req.user;
 
     if (!cpf) {
       throw new NotFoundError("CPF não enviado");
@@ -17,8 +18,8 @@ export class DeleteUserController {
       let result = [];
       let removedUser = [];
 
+      result = await service.delete_user(createdBy.nome, cpf);
       removedUser = await getService.get_user_by_cpf(cpf);
-      result = await service.delete_user(cpf);
 
       return res.status(200).json({
         message: "Usuário deletado com sucesso",

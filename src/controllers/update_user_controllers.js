@@ -8,7 +8,10 @@ export class UpdateUserController {
     const getService = new GetUserByCpfService();
 
     const { cpf } = req.params;
-    const data = req.body;
+    const createdBy = req.user;
+    let data = req.body;
+
+    data = { ...data, usuario_atualizacao: createdBy.nome };
 
     if (!cpf) {
       throw new NotFoundError("CPF não enviado");

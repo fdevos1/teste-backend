@@ -10,9 +10,13 @@ export class CreateNewUserController {
     const getByIdService = new GetUserByIdService();
 
     try {
-      const userData = req.body;
+      const createdBy = req.user;
+
+      let userData = req.body;
       let result = [];
       let createdUser = [];
+
+      userData = { ...userData, usuario_criacao: createdBy.nome };
 
       const userAlreadyExist = await getByCpfService.get_user_by_cpf(
         userData.cpf

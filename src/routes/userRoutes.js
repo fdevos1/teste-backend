@@ -9,6 +9,8 @@ import { GetUserByIdController } from "../controllers/get_user_by_id_controller.
 import { DeleteUserController } from "../controllers/delete_user_controller.js";
 import { UpdateUserController } from "../controllers/update_user_controllers.js";
 
+import verifyToken from "../middlewares/verifyToken.js";
+
 const routes = Router();
 
 const authenticateUserRequest = new AuthenticateRequestController();
@@ -24,12 +26,20 @@ routes.get("/", (req, res) => {
   return res.send({ message: "Hello World!" });
 });
 
-routes.get("/usuarios", getUsersController.get_all_users);
-routes.get("/usuario/:cpf", getUserByCpfController.get_user_by_cpf);
-routes.get("/usuario/:id", getUserByIdController.get_user_by_id);
-routes.post("/criar-usuario", createUserController.new_user);
-routes.post("/autenticar", authenticateUserRequest.authenticate);
-routes.delete("/remover-usuario", deleteUserController.delete_user);
-routes.put("/atualizar-usuario/:cpf", updateUserController.update_user);
+routes.get("/usuarios", verifyToken, getUsersController.get_all_users);
+routes.get(
+  "/usuario/:cpf",
+  verifyToken,
+  getUserByCpfController.get_user_by_cpf
+);
+routes.get("/usuario/:id", verifyToken, getUserByIdController.get_user_by_id);
+routes.post("/criar-usuario", verifyToken, createUserController.new_user);
+routes.post("/autenticar", verifyToken, authenticateUserRequest.authenticate);
+routes.put("/remover-usuario", verifyToken, deleteUserController.delete_user);
+routes.put(
+  "/atualizar-usuario/:cpf",
+  verifyToken,
+  updateUserController.update_user
+);
 
 export { routes };
